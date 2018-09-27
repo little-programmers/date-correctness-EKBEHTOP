@@ -1,31 +1,38 @@
 #include <stdio.h>
 #include <assert.h>
-#include <stdbool.h>
 
-// Функция возращает true, если дата корректна, иначе - false.
-// Вы можете объявлять дополнительные функции, главное, чтобы присутствовала эта функция.
-// Вместо точки с запятой, открывайте фигурные скобки и начинайте писать.
-bool date_correctness(int day, int month, int year);
+int ctof(float n) {
+	return (9 / 5.0*n) + 32;
+}
 
+int ftoc(float tratatata) {
+	return 5 / 9.0 * (tratatata - 32);
+}
 
-void test_date_correctness() {
-    assert(date_correctness(1,1,2018));
-    assert(date_correctness(30,5,1999));
-    assert(date_correctness(31,12,100));
-    assert(date_correctness(31,8,2016));
-    assert(date_correctness(29,2,2400));
-    assert(date_correctness(31,4,3000));
-    assert(!date_correctness(-1,3,1));
-    assert(!date_correctness(1,-3,1));
-    assert(!date_correctness(1,3,-1));
-    assert(!date_correctness(2,13,2001));
-    assert(!date_correctness(40,5,777));
-    assert(!date_correctness(29,2,1900));
+void test_ctof() {
+    assert(ctof(0) == 32);
+    assert(ctof(1) == 33);
+    assert(ctof(-1) == 30);
+    assert(ctof(20) == 68);
+    assert(ctof(43.4) == 110);
+    assert(ctof(-102.8) == -153);
 
-    printf("Тесты прошли успешно!\n");
+    printf("Все тесты перевода из C в F успешно пройдены!\n");
+}
+
+void test_ftoc() {
+    assert(ftoc(32) == 0);
+    assert(ftoc(33.9) == 1);
+    assert(ftoc(30) == -1);
+    assert(ftoc(68) == 20);
+    assert(ftoc(111.3) == 44);
+    assert(ftoc(-153.5) == -103);
+
+    printf("Все тесты перевода из F в C успешно пройдены!\n");
 }
 
 int main() {
-    test_date_correctness();
+    test_ctof();
+    test_ftoc();
     return 0;
 }
